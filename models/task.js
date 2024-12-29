@@ -17,7 +17,7 @@ const taskSchema = new mongoose.Schema({
 		type: String,
 		default: "Medium"
 	},
-	creatDate: {
+	createDate: {
 		type: Date,
 		default: Date.now()
 	}

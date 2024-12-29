@@ -19,6 +19,22 @@ router.post('/tasks', async (req, res) => {
     }
 });
 
+router.patch('/tasks/:id', async (req, res) => {
+	const taskId = req.params.id;
+
+	const { title, description, completed, priority, createDate} = req.body;
+
+	try {
+		const result = await Task.findByIdAndUpdate(taskId, {title, description, completed, priority, createDate});
+		if (result === null)
+			res.status(202).json({ message: "No task found with this Id" });
+		else
+			res.status(200).json(result);
+	} catch (error) {
+		res.status(400).json({ message: error.message });
+	}
+});
+
 router.delete('/tasks/:id', async (req, res) => {
 	const taskId = req.params.id;
 
